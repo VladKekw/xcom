@@ -21,10 +21,10 @@ public class AlienBase {
     public Label l;
     public AlienBase(double x, double y) throws FileNotFoundException
     {
-        i = new Image(Main.class.getResource("alienbase.png").toString(), 1200, 444, false, false);
+        i = new Image(Main.class.getResource("alienbase.png").toString(), 600, 600, false, false);
         ImageView imageView = new ImageView(i);
-        imageView.setX(x+33);
-        imageView.setY(y+33);
+        imageView.setX(x+5);
+        imageView.setY(y+5);
         imageView.setPreserveRatio(true);
         this.iv = imageView;
 
@@ -32,12 +32,12 @@ public class AlienBase {
 
         this.l = new Label("Alien Base");
         this.l.setFont(new Font("Arial", 28));
-        this.l.setTextFill(Color.BLACK);
-        this.l.setTranslateX(x + 500);
+        this.l.setTextFill(Color.WHITE);
+        this.l.setTranslateX(x + 150);
         this.l.setTranslateY(y - 50);
 
 
-        this.r = new Rectangle(x , y , 1250, 500);
+        this.r = new Rectangle(x , y , 609, 609);
         this.r.setFill(Color.TRANSPARENT);
         r.setStrokeWidth(5);
         this.r.setStroke(Color.BLACK);

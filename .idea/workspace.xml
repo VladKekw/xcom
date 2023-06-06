@@ -5,30 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd6673f-70d0-455d-ba6d-ede969bcbc54" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/AlienBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/Background.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/City.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/CreateUnit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/HeliumLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/HumanBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60897.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60934.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60942.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/alienbase.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/backround.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/city.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/humanbase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/ChangeUnitStats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/Choose.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/engineer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/human.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/leader.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/soldier.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/AlienBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/AlienBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/HeliumLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/HeliumLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/HumanBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/HumanBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoEngineer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoEngineer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoLeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoLeader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoSoldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoSoldier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/60897.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/60934.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/60942.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60897.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60934.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60942.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +47,9 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2QfH4m6UHRisFS7IvW1KiKg7LCA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">

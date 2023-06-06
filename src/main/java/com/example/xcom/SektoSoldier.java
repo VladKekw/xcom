@@ -20,6 +20,15 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
     public final static int maxhealth = 100;
     private double posX;
     private  double damage;
+
+    public HeliumLevel getHeliumLevel() {
+        return heliumLevel;
+    }
+
+    public void setHeliumLevel(HeliumLevel heliumLevel) {
+        this.heliumLevel = heliumLevel;
+    }
+
     private int speed;
     private int attackRange = 40;
     private double posY;
@@ -36,6 +45,10 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
     protected Rectangle rectActive = new Rectangle();
     protected Label heliumLabel = new Label();
 
+    public void updateHeliumLevel(){
+        this.heliumLabel.setText(Integer.toString(heliumLevel.getHeliumAmount()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,6 +64,13 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         if (health != soldier.health) return false;
         if (isActive != soldier.isActive) return false;
         return name.equals(soldier.name);
+    }
+    public void checkHealth()
+    {
+        if(this.heliumLevel.getHeliumAmount()==0)
+        {
+            this.setHealth(this.health-1);
+        }
     }
 
     @Override
@@ -117,6 +137,14 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         this.name = name;
     }
 
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
     static {
         System.out.println("Static initialization is complete!");
         /*Main.createSoldier(100, "Soldier1",30,100,100,false);
@@ -145,15 +173,16 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
             rectActive.setStroke(Color.TRANSPARENT);
         }
         heliumLabel.setLayoutX(x+78);
-        heliumLabel.setLayoutY(y);
-        heliumLabel.setTextFill(Color.BLACK);
+        heliumLabel.setLayoutY(y-5);
+        heliumLabel.setTextFill(Color.WHITE);
         heliumLabel.setFont(new Font(15));
         heliumLabel.setText(Integer.toString(lvl.getHeliumAmount()));
 
         namelabel.setText(n);
         namelabel.setLayoutX(x);
-        namelabel.setLayoutY(y-6);
+        namelabel.setLayoutY(y-12);
         namelabel.setFont(new Font(15));
+        namelabel.setTextFill(Color.WHITE);
         life.setStrokeWidth(6);
         life.setStroke(Color.GREEN);
         life.setStartX(x+10);
@@ -178,10 +207,10 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         this.posY = y;
         this.isActive= isActive;
         heliumLevel = new HeliumLevel();
-        this.i = new Image(Main.class.getResource("60897.png").toString(), 95, 95, false, false);
+        this.i = new Image(Main.class.getResource("soldier.png").toString(), 95, 95, false, false);
         imageView = new ImageView(i);
-        imageView.setX(x - 3);
-        imageView.setY(y + 15);
+        imageView.setX(x +5);
+        imageView.setY(y + 5);
         drawUnit(heliumLevel,name,posX,posY);
         this.g.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -190,10 +219,23 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
             }
 
         });
-
-
     }
 
+    public Group getG() {
+        return g;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+        if(isActive)
+            this.rectActive.setStroke(Color.RED);
+
+        else this.rectActive.setStroke(Color.TRANSPARENT);
+    }
     public SektoSoldier() {
         this(100, "Soldier",30, 0, 0, false);
         System.out.println("Sekto-Soldier has been created");
@@ -208,16 +250,92 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
 
         });
     }
+    public static void cleanupCorpses() {
+        for (int i = 0; i < Main.army.size(); i++) {
+            SektoSoldier soldier = Main.army.get(i);
+            if (soldier.getHealth() <= 0) {
+                Main.group.getChildren().remove(soldier.g);
+                /*logger.log(i + " died ");*/
+                Main.army.remove(i);
+            }
+
+        }
+    }
+    public void moveLeft() {
+        if (!isActive) return;
+        {
+             {
+                double y = g.getLayoutX() - speed;
+                this.g.setLayoutX(y);
+            }
+        }
+    }
+    public void moveRight() {
+        if (!isActive) return;
+        {
+            {
+                double y = g.getLayoutX() +speed;
+                this.g.setLayoutX(y);
+            }
+        }
+    }
+    public void moveUp() {
+        if (!isActive) return;
+        {
+            {
+                double y = g.getLayoutY() - speed;
+                this.g.setLayoutY(y);
+            }
+        }
+    }
+    public void moveDown() {
+        if (!isActive) return;
+        {
+                double y = g.getLayoutY() + speed;
+                this.g.setLayoutY(y);
+        }
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        SektoSoldier tmp = new SektoSoldier();
+        Main.group.getChildren().remove(tmp.g);
+        tmp.heliumLevel = (HeliumLevel) this.heliumLevel.clone();
+        if (this instanceof SektoLeader) {
+            tmp = new SektoLeader(this.getHealth(), "Cloned",this.getDamage(), this.getPosX(), this.getPosY(),this.isActive);
+            tmp.drawUnit(this.heliumLevel,"Cloned",this.getPosX(),this.getPosY());
+            Main.army.add(tmp);
+            return tmp;
+        }
+        if (this instanceof SektoEngineer) {
+            tmp = new SektoEngineer(this.getHealth(), "Cloned",this.getDamage(), this.getPosX(), this.getPosY(),this.isActive);
+            tmp.drawUnit(this.heliumLevel,"Cloned",this.getPosX(),this.getPosY());
+            Main.army.add(tmp);
+            return tmp;
+        }
+        if (this instanceof SektoSoldier) {
+            tmp = new SektoSoldier(this.getHealth(), "Cloned",this.getDamage(), this.getPosX(), this.getPosY(),this.isActive);
+            tmp.drawUnit(this.heliumLevel,"Cloned",this.getPosX(),this.getPosY());
+            Main.army.add(tmp);
+            return tmp;
+        }
+
+
+        return null;
+
+    }
 
     @Override
     public String toString() {
         return "SektoSoldier{" +
                 "posX=" + posX +
+                ", damage=" + damage +
                 ", speed=" + speed +
-                ", attackRange=" + attackRange +
                 ", posY=" + posY +
                 ", health=" + health +
                 ", name='" + name + '\'' +
+                ", isActive=" + isActive +
+                ", heliumLevel=" + heliumLevel +
                 '}';
     }
 

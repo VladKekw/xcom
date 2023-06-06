@@ -1,7 +1,7 @@
 package com.example.xcom;
 
 public class HeliumLevel  implements  Cloneable{
-    public static final int heliumReservesMax = 150;
+    public static final int heliumReservesMax = 1500;
     private int heliumAmount;
 
     public int getHeliumAmount() {
@@ -16,9 +16,10 @@ public class HeliumLevel  implements  Cloneable{
     {
     this.heliumAmount = heliumReservesMax;
     }
+
     public void consumeHelium()
     {
-        this.heliumAmount--;
+        this.heliumAmount -= 0.0001;
     }
     @Override
     protected Object clone() throws CloneNotSupportedException {

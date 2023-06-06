@@ -10,10 +10,10 @@ public class SektoLeader extends SektoEngineer{
  {
      super(health,name,dmg,x,y, active);
      this.setSpeed(80);
-     this.i = new Image(Main.class.getResource("60942.png").toString(),70,70,false,false);
+     this.i = new Image(Main.class.getResource("leader.png").toString(),70,70,false,false);
      this.imageView.setImage(this.i);
-     imageView.setX(x-3);
-     imageView.setY(y+15);
+     imageView.setX(x+25);
+     imageView.setY(y+25);
      heliumLevel = new HeliumLevel();
      drawUnit(heliumLevel,name,x,y);
      this.g.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -40,6 +40,18 @@ public class SektoLeader extends SektoEngineer{
      });
 
  }
-    
+    @Override
+    public String toString() {
+        return "SektoLeader{" +
+                "posX=" + getPosX() +
+                ", damage=" + getDamage() +
+                ", speed=" + getSpeed() +
+                ", posY=" + getPosY() +
+                ", health=" + getHealth() +
+                ", name='" + getName() + '\'' +
+                ", isActive=" + isActive() +
+                ", heliumLevel=" + heliumLevel +
+                '}';
+    }
 
 }
