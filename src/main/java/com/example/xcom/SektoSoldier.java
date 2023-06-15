@@ -16,10 +16,13 @@ import javafx.scene.text.Font;
 import java.util.Comparator;
 
 public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Comparator<SektoSoldier> {
-    public final static int minhealth = 0;
     public final static int maxhealth = 100;
     private double posX;
-    private  double damage;
+    private double damage;
+
+    public int getHeliumamount() {
+        return heliumLevel.getHeliumAmount();
+    }
 
     public HeliumLevel getHeliumLevel() {
         return heliumLevel;
@@ -29,12 +32,22 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         this.heliumLevel = heliumLevel;
     }
 
-    private int speed;
-    private int attackRange = 40;
-    private double posY;
-    private int health;
-    private String name;
-    private boolean isActive;
+    protected int speed;
+    protected int attackRange = 40;
+    protected boolean gotShelter;
+
+    public boolean isGotShelter() {
+        return gotShelter;
+    }
+
+    public void setGotShelter(boolean gotShelter) {
+        this.gotShelter = gotShelter;
+    }
+
+    protected double posY;
+    protected int health;
+    protected String name;
+    protected boolean isActive;
     protected Label namelabel = new Label();
     protected Circle radius = new Circle();
     protected Line life = new Line();
@@ -44,9 +57,18 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
     protected HeliumLevel heliumLevel;
     protected Rectangle rectActive = new Rectangle();
     protected Label heliumLabel = new Label();
+    public static Log log = new Log("D:\\soldiers.txt");
 
-    public void updateHeliumLevel(){
+    public void updateHeliumLevel() {
         this.heliumLabel.setText(Integer.toString(heliumLevel.getHeliumAmount()));
+    }
+
+
+    @Override
+    public int compare(SektoSoldier o1, SektoSoldier o2) {
+        if (o1.hashCode() < o2.hashCode()) {
+            return 1;
+        } else return 0;
     }
 
     @Override
@@ -65,11 +87,10 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         if (isActive != soldier.isActive) return false;
         return name.equals(soldier.name);
     }
-    public void checkHealth()
-    {
-        if(this.heliumLevel.getHeliumAmount()==0)
-        {
-            this.setHealth(this.health-1);
+
+    public void checkHealth() {
+        if (this.heliumLevel.getHeliumAmount() == 0) {
+            this.setHealth(this.health - 1);
         }
     }
 
@@ -90,11 +111,12 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
     }
 
     public double getPosX() {
-        return posX;
+        return this.g.getLayoutX();
     }
 
     public void setPosX(double posX) {
         this.posX = posX;
+        this.g.setLayoutX(posX);
     }
 
     public int getSpeed() {
@@ -114,11 +136,12 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
     }
 
     public double getPosY() {
-        return posY;
+        return this.g.getLayoutY();
     }
 
     public void setPosY(double posY) {
         this.posY = posY;
+        this.g.setLayoutY(posY);
     }
 
     public int getHealth() {
@@ -151,67 +174,68 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         Main.createEngineer(100, "engineer",30,100,100,false);
         Main.createLeader(100, "leader",30,100,100,false);*/
     }
-    public void flipAcitve(){
-        this.isActive =!this.isActive;
-        if(this.isActive)
-        {
+
+    public void flipAcitve() {
+        this.isActive = !this.isActive;
+        if (this.isActive) {
             this.rectActive.setStroke(Color.RED);
-        }
-        else {
+        } else {
             this.rectActive.setStroke(Color.TRANSPARENT);
         }
     }
 
-    public void drawUnit(HeliumLevel lvl,String n, double x, double y ) {
-        rectActive = new Rectangle(x, y,105,105);
+    public void drawUnit(HeliumLevel lvl, String n, double x, double y) {
+        rectActive = new Rectangle(x, y, 105, 105);
         rectActive.setStrokeWidth(2);
         rectActive.setFill(Color.TRANSPARENT);
         if (isActive) {
             rectActive.setStroke(Color.RED);
-        }
-        else{
+        } else {
             rectActive.setStroke(Color.TRANSPARENT);
         }
-        heliumLabel.setLayoutX(x+78);
-        heliumLabel.setLayoutY(y-5);
+        heliumLabel.setLayoutX(x + 70);
+        heliumLabel.setLayoutY(y - 5);
         heliumLabel.setTextFill(Color.WHITE);
         heliumLabel.setFont(new Font(15));
         heliumLabel.setText(Integer.toString(lvl.getHeliumAmount()));
 
         namelabel.setText(n);
         namelabel.setLayoutX(x);
-        namelabel.setLayoutY(y-12);
+        namelabel.setLayoutY(y - 5);
         namelabel.setFont(new Font(15));
         namelabel.setTextFill(Color.WHITE);
         life.setStrokeWidth(6);
         life.setStroke(Color.GREEN);
-        life.setStartX(x+10);
-        life.setStartY(y + 15);
-        life.setEndY(y + 15);
+        life.setStartX(x + 10);
+        life.setStartY(y + 20);
+        life.setEndY(y + 20);
         life.setEndX(x + 48);
         radius = new Circle(attackRange);
         radius.setCenterY(y + 60);
         radius.setCenterX(x + 35);
         radius.setFill(Color.TRANSPARENT);
-        g = new Group(rectActive,namelabel,life,imageView,heliumLabel,radius);
+        g = new Group(rectActive, namelabel, life, imageView, heliumLabel, radius);
         Main.group.getChildren().addAll(g);
 
 
     }
 
-    public SektoSoldier(int health, String name,double dmg, double x, double y, boolean isActive) {
+    public SektoSoldier(int health, String name, double dmg, double x, double y, boolean isActive) {
+        this.speed = 30;
         this.health = health;
         this.name = name;
         this.damage = dmg;
         this.posX = x;
         this.posY = y;
-        this.isActive= isActive;
+        this.isActive = isActive;
         heliumLevel = new HeliumLevel();
-        this.i = new Image(Main.class.getResource("soldier.png").toString(), 95, 95, false, false);
+        this.i = new Image(Main.class.getResource("soldier.png").toString(), 75, 75, false, false);
         imageView = new ImageView(i);
-        imageView.setX(x +5);
-        imageView.setY(y + 5);
-        drawUnit(heliumLevel,name,posX,posY);
+        imageView.setX(x + 15);
+        imageView.setY(y + 25);
+        drawUnit(heliumLevel, name, posX, posY);
+        log.log(this + "spawned");
+
         this.g.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -231,16 +255,17 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
 
     public void setActive(boolean active) {
         isActive = active;
-        if(isActive)
+        if (isActive)
             this.rectActive.setStroke(Color.RED);
 
         else this.rectActive.setStroke(Color.TRANSPARENT);
     }
+
     public SektoSoldier() {
-        this(100, "Soldier",30, 0, 0, false);
+        this(100, "Soldier", 30, 0, 0, false);
         System.out.println("Sekto-Soldier has been created");
-        HeliumLevel heliumLevel1 =new HeliumLevel();
-        drawUnit(heliumLevel1,name,0,0);
+        HeliumLevel heliumLevel1 = new HeliumLevel();
+        drawUnit(heliumLevel1, name, 0, 0);
 
         this.g.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -250,49 +275,78 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
 
         });
     }
-    public static void cleanupCorpses() {
+
+    public static void deleteDead() {
         for (int i = 0; i < Main.army.size(); i++) {
             SektoSoldier soldier = Main.army.get(i);
             if (soldier.getHealth() <= 0) {
                 Main.group.getChildren().remove(soldier.g);
-                /*logger.log(i + " died ");*/
+                log.log(Main.army.get(i) + " is dead");
                 Main.army.remove(i);
+
             }
 
         }
     }
+
     public void moveLeft() {
         if (!isActive) return;
         {
-             {
-                double y = g.getLayoutX() - speed;
-                this.g.setLayoutX(y);
-            }
+            this.posX -= speed;
         }
     }
-    public void moveRight() {
-        if (!isActive) return;
-        {
-            {
-                double y = g.getLayoutX() +speed;
-                this.g.setLayoutX(y);
-            }
-        }
-    }
+
+
     public void moveUp() {
         if (!isActive) return;
         {
-            {
-                double y = g.getLayoutY() - speed;
-                this.g.setLayoutY(y);
-            }
+            this.posY -= speed;
         }
     }
+
+    public void moveRight() {
+        if (!isActive) return;
+        {
+            this.posX += speed;
+        }
+    }
+
+
     public void moveDown() {
         if (!isActive) return;
         {
-                double y = g.getLayoutY() + speed;
-                this.g.setLayoutY(y);
+            {
+                this.posY += speed;
+            }
+        }
+    }
+
+    public void checkForCollision() {
+        for (SektoSoldier s : Main.army) {
+            if (s.getG().getBoundsInParent().intersects(XCOMBase.xcomBaseGroup.getBoundsInParent())) {
+                if (s.isGotShelter()) {
+                    return;
+                } else {
+                    Main.XCOMattackers.add(s);
+                    s.setGotShelter(true);
+                }
+            }
+            if (s.getG().getBoundsInParent().intersects(City.cityGroup.getBoundsInParent())) {
+                if (s.isGotShelter()) {
+                    return;
+                } else {
+                    Main.CITYattackers.add(s);
+                    s.setGotShelter(true);
+                }
+            }
+            if (s.getG().getBoundsInParent().intersects(AlienBase.alienBaseGroup.getBoundsInParent())) {
+                if (s.isGotShelter()) {
+                    return;
+                } else {
+                    Main.AlienBase.add(s);
+                    s.setGotShelter(true);
+                }
+            }
         }
     }
 
@@ -302,27 +356,42 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         Main.group.getChildren().remove(tmp.g);
         tmp.heliumLevel = (HeliumLevel) this.heliumLevel.clone();
         if (this instanceof SektoLeader) {
-            tmp = new SektoLeader(this.getHealth(), "Cloned",this.getDamage(), this.getPosX(), this.getPosY(),this.isActive);
-            tmp.drawUnit(this.heliumLevel,"Cloned",this.getPosX(),this.getPosY());
+            tmp = new SektoLeader(this.getHealth(), "Cloned", this.getDamage(), this.getPosX(), this.getPosY(), this.isActive);
+            tmp.drawUnit(this.heliumLevel, "Cloned", this.getPosX(), this.getPosY());
             Main.army.add(tmp);
             return tmp;
         }
         if (this instanceof SektoEngineer) {
-            tmp = new SektoEngineer(this.getHealth(), "Cloned",this.getDamage(), this.getPosX(), this.getPosY(),this.isActive);
-            tmp.drawUnit(this.heliumLevel,"Cloned",this.getPosX(),this.getPosY());
+            tmp = new SektoEngineer(this.getHealth(), "Cloned", this.getDamage(), this.getPosX(), this.getPosY(), this.isActive);
+            tmp.drawUnit(this.heliumLevel, "Cloned", this.getPosX(), this.getPosY());
             Main.army.add(tmp);
             return tmp;
         }
         if (this instanceof SektoSoldier) {
-            tmp = new SektoSoldier(this.getHealth(), "Cloned",this.getDamage(), this.getPosX(), this.getPosY(),this.isActive);
-            tmp.drawUnit(this.heliumLevel,"Cloned",this.getPosX(),this.getPosY());
+            tmp = new SektoSoldier(this.getHealth(), "Cloned", this.getDamage(), this.getPosX(), this.getPosY(), this.isActive);
+            tmp.drawUnit(this.heliumLevel, "Cloned", this.getPosX(), this.getPosY());
             Main.army.add(tmp);
             return tmp;
         }
-
-
         return null;
+    }
 
+    public void reDraw() {
+        this.imageView.setX(posX + 15);
+        this.imageView.setY(posY + 25);
+        this.rectActive.setY(this.posY);
+        this.rectActive.setX(this.posX);
+        this.heliumLabel.setLayoutX(this.posX + 70);
+        this.heliumLabel.setLayoutY(this.posY - 5);
+        this.radius.setCenterY(posY + 60);
+        this.radius.setCenterX(posX + 35);
+        this.namelabel.setLayoutX(posX);
+        this.namelabel.setLayoutY(posY - 5);
+        this.life.setStartX(posX + 10);
+        this.life.setStartY(posY + 20);
+        this.life.setEndY(posY + 20);
+        this.life.setEndX(posX + 48);
+        log.log("unit changed his position to " + this.posX + " " + this.posY);
     }
 
     @Override
@@ -335,7 +404,7 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
                 ", health=" + health +
                 ", name='" + name + '\'' +
                 ", isActive=" + isActive +
-                ", heliumLevel=" + heliumLevel +
+                ", heliumLevel=" + heliumLevel.getHeliumAmount() +
                 '}';
     }
 
@@ -344,8 +413,5 @@ public class SektoSoldier implements Cloneable, Comparable<SektoSoldier>, Compar
         return 0;
     }
 
-    @Override
-    public int compare(SektoSoldier o1, SektoSoldier o2) {
-        return 0;
-    }
+
 }

@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bd6673f-70d0-455d-ba6d-ede969bcbc54" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/ChangeUnitStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/Choose.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/engineer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/human.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/leader.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/xcom/soldier.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/Log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/AlienBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/AlienBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/HeliumLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/HeliumLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/HumanBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/HumanBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/CreateUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/CreateUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/HumanBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/XCOMBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoEngineer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoEngineer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoLeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoLeader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoSoldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/xcom/SektoSoldier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60897.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60934.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/xcom/60942.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,16 +51,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/1 курс/ООП/xcom/xcom/src/main/resources/com/example/xcom"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/1 курс/ООП/xcom/xcom/src/main/resources/com/example/xcom&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.xcom" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\1 курс\ООП\xcom\xcom\src\main\resources\com\example\xcom" />
       <recent name="D:\1 курс\ООП\xcom\xcom\src\main\resources" />

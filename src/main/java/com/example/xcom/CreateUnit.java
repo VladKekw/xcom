@@ -90,7 +90,7 @@ public class CreateUnit {
         layout.getChildren().addAll(nameLabel, nameText, healthLabel, healthText,
                 damageLabel,damageText,
                 xLabel, xText, yLabel, yText,active,
-                cLabel,comboBox, okButton);
+                cLabel,activelabel,comboBox, okButton);
         Scene scene=new Scene(layout,303,300);
         window.setScene(scene);
         window.showAndWait();

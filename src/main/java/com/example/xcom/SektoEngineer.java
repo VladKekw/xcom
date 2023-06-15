@@ -9,9 +9,9 @@ public class SektoEngineer extends SektoSoldier{
     public SektoEngineer(int health, String name,double dmg, double x, double y, boolean active) {
         super(health,name,dmg,x,y,active);
         this.setSpeed(50);
-        this.i = new Image(Main.class.getResource("engineer.png").toString(),70,70,false,false);
+        this.i = new Image(Main.class.getResource("engineer.png").toString(),75,75,false,false);
         this.imageView.setImage(this.i);
-        imageView.setX(x+25);
+        imageView.setX(x+15);
         imageView.setY(y+25);
         heliumLevel = new HeliumLevel();
         drawUnit(heliumLevel,name,x,y);
@@ -44,15 +44,15 @@ public class SektoEngineer extends SektoSoldier{
 
     @Override
     public String toString() {
-        return "SektoEngineer{" +
+        return "SektoEngineer {" +
                 "posX=" + getPosX() +
                 ", damage=" + getDamage() +
-                ", speed=" + getSpeed() +
-                ", posY=" + getPosY() +
-                ", health=" + getHealth() +
-                ", name='" + getName() + '\'' +
-                ", isActive=" + isActive() +
-                ", heliumLevel=" + heliumLevel +
+                ", speed=" + speed +
+                ", posY=" + posY +
+                ", health=" + health +
+                ", name='" + name + '\'' +
+                ", isActive=" + isActive +
+                ", heliumLevel=" + heliumLevel.getHeliumAmount() +
                 '}';
     }
 
